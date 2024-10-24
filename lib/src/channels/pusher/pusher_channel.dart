@@ -50,5 +50,20 @@ class PusherChannel<PChannelT extends PUSHER.Channel> extends Channel {
 
   /// Bind a channel to an event.
   void on(String event, Function callback) =>
-      subscription.bind(event, (event) => callback(event?.data));
+        subscription.bind(event, (event) {
+  try {
+            // Check if the event itself is already a Map and pass it directly
+            if (event is Map<String, dynamic>) {
+              callback(event); // Pass the whole event if it's already a Map
+            } else {
+              print('Unexpected event structure: ${event.runtimeType}');
+              callback(event); // Pass the raw event if it's not a Map
+            }
+          } catch (err, stacktrace) {
+            print('Error in event listener: $err');
+            print('Stacktrace: $stacktrace');
+          }
+        }
+
+        );
 }
