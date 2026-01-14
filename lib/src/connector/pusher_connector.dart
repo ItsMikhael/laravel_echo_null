@@ -19,9 +19,7 @@ class PusherConnector extends Connector<PUSHER.PusherClient, PusherChannel> {
     String key, {
     required String authEndPoint,
     String? cluster,
-    Future<Map<String, String>> Function()? authHeaders = const {
-      'Content-Type': 'application/json'
-    },
+    Future<Map<String, String>> Function()? authHeaders,
     String? host,
     Map<String, dynamic> Function(Uint8List, Map<String, dynamic>)?
         channelDecryption,
