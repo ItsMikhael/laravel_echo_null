@@ -2,6 +2,7 @@ library laravel_echo_null;
 
 // Imports
 import 'dart:typed_data';
+import 'dart:async';
 
 import 'src/channels/channel.dart';
 import 'src/channels/presence_channel.dart';
@@ -90,9 +91,7 @@ class Echo<ClientType, ChannelType> {
     String host, {
     String? namespace,
     bool autoConnect = true,
-    Map<String, String> authHeaders = const {
-      'Content-Type': 'application/json'
-    },
+    Future<Map<String, String>> Function()? authHeaders,
     Map moreOptions = const {},
     Map<String, dynamic> Function(String, Map)? channelDecryption,
   }) =>
