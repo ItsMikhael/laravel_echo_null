@@ -91,7 +91,9 @@ class Echo<ClientType, ChannelType> {
     String host, {
     String? namespace,
     bool autoConnect = true,
-    Future<Map<String, String>> Function()? authHeaders,
+    Map<String, String> authHeaders = const {
+    'Content-Type': 'application/json'
+    },
     Map moreOptions = const {},
     Map<String, dynamic> Function(String, Map)? channelDecryption,
   }) =>
@@ -109,9 +111,7 @@ class Echo<ClientType, ChannelType> {
     String appKey, {
     String? cluster,
     required String authEndPoint,
-    Map<String, String> authHeaders = const {
-      'Content-Type': 'application/json'
-    },
+    Future<Map<String, String>> Function()? authHeaders,
     Map<String, dynamic> Function(Uint8List, Map<String, dynamic>)?
         channelDecryption,
     String? host,
