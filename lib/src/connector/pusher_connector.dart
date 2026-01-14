@@ -1,4 +1,5 @@
 import 'dart:typed_data';
+import 'dart:async';
 
 import 'package:pusher_client_socket/pusher_client_socket.dart' as PUSHER;
 
